@@ -1,0 +1,10 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Cotizaciones</h1>
+<ul>
+	{% for quote in quotes %}
+	<li><a href="{% url 'quote_detail' quote.number %}">{{ quote }}</a></li>
+	{% empty %}
+	<li>No hay cotizaciones.</li>
+	{% endfor %}
+</ul>
+{% endblock %}

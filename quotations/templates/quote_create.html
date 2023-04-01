@@ -1,0 +1,45 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Nueva cotización</h1>
+<form method="post">
+	{% csrf_token %} {{ form.as_p }} {{ formset.management_form }}
+	<table id="item-table">
+		<thead>
+			<tr>
+				<th>Cantidad</th>
+				<th>Descripción</th>
+				<th>Precio unitario</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for form in formset %}
+			<tr>
+				<td>{{ form.quantity }}</td>
+				<td>{{ form.description }}</td>
+				<td>{{ form.price }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	<button id="add-row">Agregar fila</button>
+
+	<button type="submit">Guardar</button>
+</form>
+<script>
+	document
+		.getElementById("add-row")
+		.addEventListener("click", function (event) {
+			event.preventDefault();
+			const formset = document.getElementById("id_item_set-TOTAL_FORMS");
+			const newIndex = parseInt(formset.value);
+			const row = document.createElement("tr");
+			row.innerHTML = `
+            <td><input type="number" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity"></td>
+            <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description"></td>
+            <td><input type="number" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price"></td>
+            `;
+			document.querySelector("#item-table tbody").appendChild(row);
+			formset.value = newIndex + 1;
+		});
+</script>
+
+{% endblock %}
