@@ -1,21 +1,62 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Nueva cotización</h1>
 <form method="post">
-	{% csrf_token %} {{ form.as_p }} {{ formset.management_form }}
+	{% csrf_token %}
+	<label for="customer">Cliente:</label>
+    <select id="customer" name="{{ form.customer.name }}">
+        {% for x, y in form.fields.customer.choices %}
+            <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
+        {% endfor %}
+        </select>
+        
+	<label for="description">Descripcion</label>
+	<textarea
+		name="{{ form.description.name }}"
+		id="description"
+		value=""
+	></textarea>
+
+	<label for="note">Nota</label>
+	<textarea name="{{ form.note.name }}" id="note" value=""></textarea>
+
+	{{ formset.management_form }}
 	<table id="item-table">
 		<thead>
 			<tr>
 				<th>Cantidad</th>
 				<th>Descripción</th>
 				<th>Precio unitario</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
 			{% for form in formset %}
 			<tr>
-				<td>{{ form.quantity }}</td>
-				<td>{{ form.description }}</td>
-				<td>{{ form.price }}</td>
+				<td>
+					<input
+						type="number"
+						name="{{ form.quantity.name }}"
+						value="{{ form.quantity.value }}"
+						required
+					/>
+				</td>
+				<td>
+					<input
+						type="text"
+						name="{{ form.description.name }}"
+						value="{{ form.description.value }}"
+						required
+					/>
+				</td>
+				<td>
+					<input
+						type="number"
+						name="{{ form.price.name }}"
+						value="{{ form.price.value }}"
+						required
+					/>
+				</td>
+				<td><button class="remove-row">Eliminar</button></td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -36,9 +77,19 @@
             <td><input type="number" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity"></td>
             <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description"></td>
             <td><input type="number" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price"></td>
+            <td><button class="remove-row">Eliminar</button></td> <!-- nuevo td con botón -->
             `;
 			document.querySelector("#item-table tbody").appendChild(row);
 			formset.value = newIndex + 1;
+		});
+
+	document
+		.querySelector("#item-table tbody")
+		.addEventListener("click", function (event) {
+			if (event.target.classList.contains("remove-row")) {
+				event.preventDefault();
+				event.target.closest("tr").remove();
+			}
 		});
 </script>
 
