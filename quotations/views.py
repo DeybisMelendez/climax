@@ -1,7 +1,5 @@
-# from .forms import QuoteForm, ItemFormset
 from django.shortcuts import render, get_object_or_404, redirect
 from .forms import QuoteForm, ItemFormset
-# from django.forms import formset_factory
 from .models import Quote
 from django.db.models import Q
 
@@ -64,17 +62,6 @@ def quote_update(request, pk):
     return render(request, 'quote_update.html', context)
 
 
-def quote_delete(request, pk):
-    quote = get_object_or_404(Quote, pk=pk)
-
-    if request.method == 'POST':
-        quote.delete()
-        return redirect('quote_search')
-
-    context = {'quote': quote}
-    return render(request, 'quote_delete.html', context)
-
-
 def quote_search(request):
     search_query = request.GET.get('q')
 
@@ -91,3 +78,14 @@ def quote_search(request):
 
     context = {'quotes': quotes, 'search_query': search_query}
     return render(request, 'quote_search.html', context)
+
+
+def quote_delete(request, pk):
+    quote = get_object_or_404(Quote, pk=pk)
+
+    if request.method == 'POST':
+        quote.delete()
+        return redirect('quote_search')
+
+    context = {'quote': quote}
+    return render(request, 'quote_delete.html', context)
