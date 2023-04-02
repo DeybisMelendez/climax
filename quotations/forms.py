@@ -15,5 +15,5 @@ class ItemForm(forms.ModelForm):
 
 
 ItemFormset = forms.inlineformset_factory(
-    Quote, Item, form=ItemForm, extra=1
+    Quote, Item, form=ItemForm, extra=0
 )

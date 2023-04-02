@@ -1,25 +1,16 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Nueva cotización</h1>
+
+<h1>Actualizar cotización</h1>
 <form method="post">
 	{% csrf_token %}
-	<label for="customer">Cliente:</label>
-    <select id="customer" name="{{ form.customer.name }}">
-        {% for x, y in form.fields.customer.choices %}
-            <option value="{{ x }}"{% if form.fields.customer.value == x %} selected{% endif %}>{{ y }}</option>
-        {% endfor %}
-        </select>
-        
-	<label for="description">Descripcion</label>
-	<textarea
-		name="{{ form.description.name }}"
-		id="description"
-		value=""
-	></textarea>
+	<label for="{{ form.customer.id_for_label }}">Cliente:</label>
+	{{ form.customer }}
 
-	<label for="note">Nota</label>
-	<textarea name="{{ form.note.name }}" id="note" value=""></textarea>
+	<label for="{{ form.description.id_for_label }}">Descripción:</label>
+	{{ form.description }}
 
-	{{ formset.management_form }}
+	<label for="{{ form.note.id_for_label }}">Nota:</label>
+	{{ form.note }} {{ formset.management_form }}
 	<table id="item-table">
 		<thead>
 			<tr>
@@ -35,7 +26,10 @@
 				<td>{{ form.quantity }}</td>
 				<td>{{ form.description }}</td>
 				<td>{{ form.price }}</td>
-				<td><button class="remove-row">Eliminar</button></td>
+				<td>
+					{{ form.id }} {{ form.DELETE }}
+					<!--<button class="remove-row">Eliminar</button>-->
+				</td>
 			</tr>
 			{% endfor %}
 		</tbody>
@@ -44,7 +38,23 @@
 
 	<button type="submit">Guardar</button>
 </form>
+
 <script>
+	function updateFormIndices() {
+		const rows = document.querySelectorAll("#item-table tbody tr");
+		rows.forEach(function (row, index) {
+			const inputs = row.querySelectorAll("input");
+			inputs.forEach(function (input) {
+				const oldName = input.getAttribute("name");
+				const newName = oldName.replace(/-\d+-/, "-" + index + "-");
+				const oldId = input.getAttribute("id");
+				const newId = oldId.replace(/-\d+-/, "-" + index + "-");
+				input.setAttribute("name", newName);
+				input.setAttribute("id", newId);
+			});
+		});
+	}
+
 	document
 		.getElementById("add-row")
 		.addEventListener("click", function (event) {
@@ -73,6 +83,7 @@
 				);
 				const numForms = parseInt(formset.value);
 				formset.value = numForms - 1; // actualizar el número de formularios
+				updateFormIndices();
 			}
 		});
 </script>

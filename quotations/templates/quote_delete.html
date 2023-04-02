@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Eliminar cotización</h1>
+<p>¿Estás seguro que deseas eliminar la cotización "{{ quote }}"?</p>
+<form method="post">
+	{% csrf_token %}
+	<button type="submit">Eliminar</button>
+	<a href="{% url 'quote_detail' quote.number %}">Cancelar</a>
+</form>
+{% endblock %}
