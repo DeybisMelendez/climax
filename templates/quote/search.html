@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'layouts/base.html' %} {% block content %}
 <h1>Cotizaciones</h1>
 <form action="{% url 'quote_search' %}" method="GET">
 	<input type="text" name="q" placeholder="Buscar cotización..." />
@@ -8,15 +8,7 @@
 	{% for quote in quotes %}
 	<li>
 		<a href="{% url 'quote_detail' quote.number %}">{{ quote }}</a>
-		<form
-			method="POST"
-			action="{% url 'quote_delete' quote.number %}"
-			style="display: inline"
-		>
-			{% csrf_token %}
-			<input type="hidden" name="quote_id" value="{{ quote.id }}" />
-			<button type="submit">Eliminar</button>
-		</form>
+		<a href="{% url 'quote_delete' quote.number %}">Eliminar</a>
 	</li>
 	{% empty %}
 	<li>No hay cotizaciones.</li>

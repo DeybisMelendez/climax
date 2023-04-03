@@ -1,0 +1,28 @@
+{% extends 'layouts/base.html' %} {% block content %}
+<h1>Clientes</h1>
+<a href="{% url 'customer_create'%}">Añadir cliente</a>
+<table>
+	<tr>
+		<th>Cliente</th>
+		<th>RUC</th>
+		<th>Email</th>
+		<th>Dirección</th>
+		<th>Teléfono</th>
+		<th>Acciones</th>
+	</tr>
+
+	{% for customer in customers %}
+	<tr>
+		<td>{{customer.name}}</td>
+		<td>{{customer.ruc}}</td>
+		<td>{{customer.email}}</td>
+		<td>{{customer.address}}</td>
+		<td>{{customer.phone}}</td>
+		<td>
+			<a href="{% url 'customer_delete' customer.id %}">Eliminar</a>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
+
+{% endblock %}

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Customer, Quote, Item
+from .models import Quote, Item
 
 
 class ItemInline(admin.TabularInline):
@@ -15,5 +15,4 @@ class QuoteAdmin(admin.ModelAdmin):
     ordering = ('-number',)
 
 
-admin.site.register(Customer)
 admin.site.register(Quote, QuoteAdmin)

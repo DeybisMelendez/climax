@@ -1,0 +1,9 @@
+{% extends 'layouts/base.html' %} {% block content %}
+<h1>Eliminar Cliente</h1>
+<p>¿Estás seguro que deseas eliminar este cliente? "{{ customer }}"?</p>
+<form method="post">
+	{% csrf_token %}
+	<button type="submit">Eliminar</button>
+	<a href="{% url 'customer_detail' customer.id %}">Cancelar</a>
+</form>
+{% endblock %}

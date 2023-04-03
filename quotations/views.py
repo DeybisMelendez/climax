@@ -7,7 +7,7 @@ from django.db.models import Q
 def quote_detail(request, pk):
     quote = get_object_or_404(Quote, pk=pk)
     items = quote.item_set.all()
-    return render(request, 'quote_detail.html', {'quote': quote, 'items': items})
+    return render(request, 'quote/detail.html', {'quote': quote, 'items': items})
 
 
 def quote_create(request):
@@ -34,7 +34,7 @@ def quote_create(request):
         'form': form,
         'formset': formset,
     }
-    return render(request, 'quote_create.html', context)
+    return render(request, 'quote/create.html', context)
 
 
 def quote_update(request, pk):
@@ -59,7 +59,7 @@ def quote_update(request, pk):
         'form': form,
         'formset': formset,
     }
-    return render(request, 'quote_update.html', context)
+    return render(request, 'quote/update.html', context)
 
 
 def quote_search(request):
@@ -77,7 +77,7 @@ def quote_search(request):
         quotes = Quote.objects.all()
 
     context = {'quotes': quotes, 'search_query': search_query}
-    return render(request, 'quote_search.html', context)
+    return render(request, 'quote/search.html', context)
 
 
 def quote_delete(request, pk):
@@ -88,4 +88,4 @@ def quote_delete(request, pk):
         return redirect('quote_search')
 
     context = {'quote': quote}
-    return render(request, 'quote_delete.html', context)
+    return render(request, 'quote/delete.html', context)
