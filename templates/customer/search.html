@@ -1,28 +1,52 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1>Clientes</h1>
-<a href="{% url 'customer_create'%}">Añadir cliente</a>
-<table>
-	<tr>
-		<th>Cliente</th>
-		<th>RUC</th>
-		<th>Email</th>
-		<th>Dirección</th>
-		<th>Teléfono</th>
-		<th>Acciones</th>
-	</tr>
 
-	{% for customer in customers %}
-	<tr>
-		<td>{{customer.name}}</td>
-		<td>{{customer.ruc}}</td>
-		<td>{{customer.email}}</td>
-		<td>{{customer.address}}</td>
-		<td>{{customer.phone}}</td>
-		<td>
-			<a href="{% url 'customer_delete' customer.id %}">Eliminar</a>
-		</td>
-	</tr>
-	{% endfor %}
-</table>
+<div class="grid">
+	<div class="s12 grid">
+		<div class="flex align-center s10">
+			<i class="material-icons">person</i>
+			<h6>Clientes</h6>
+		</div>
+		<div class="s2 flex align-center">
+			<a href="{% url 'customer_create'%}" class="s12 button blue-bg white"
+			><i class="material-icons">person_add</i>
+			Añadir cliente</a>
+		</div>
+	</div>
+	<div class="s12 grid">
+		
+		<form action="{% url 'customer_search' %}" method="GET" class="s12 flex align-center">
+			<input
+				class="full-width"
+				type="text"
+				name="q"
+				placeholder="Buscar clientes..."
+			/>
+	</div>
+	</form>
+	<table class="s12">
+		<tr>
+			<th>Cliente</th>
+			<!--<th>RUC</th>
+			<th>Email</th>-->
+			<th>Dirección</th>
+			<th>Teléfono</th>
+			<th>Acciones</th>
+		</tr>
+	
+		{% for customer in customers %}
+		<tr>
+			<td><a href="{% url 'customer_detail' customer.id %}" class="link blue">{{customer.name}}</a></td>
+			<!--<td>{{customer.ruc}}</td>
+			<td>{{customer.email}}</td>-->
+			<td>{{customer.address}}</td>
+			<td>{{customer.phone}}</td>
+			<td class="flex">
+				<a href="{% url 'customer_update' customer.id %}" class="orange"><i class="material-icons">edit</i></a>
+				<a href="{% url 'customer_delete' customer.id %}" class="red"><i class="material-icons">delete</i></a>
+			</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 
 {% endblock %}

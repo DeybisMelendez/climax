@@ -1,0 +1,61 @@
+@page {
+    margin:0.25in;
+    size:Letter;
+}
+:root{
+    --blue:#2196f3;
+}
+
+.pdf * {
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    line-height: normal;
+    margin: 0 ;
+    padding:0 ;
+}
+p, b, i, th, td{
+    font-size: 12px;
+    margin:0;
+}
+
+.logo {
+    width: 300px;
+    height: auto;
+}
+.full-width {
+    width: 100%;
+}
+.center {
+    text-align:center;
+}
+.left{
+    text-align: left;
+}
+.right{
+    text-align: right;
+}
+.margin{
+    margin-top:0.25in;
+    margin-bottom: 0.25in;
+}
+.cotizacion{
+    padding: 0.15in;
+    background-color: var(--blue);
+    color:white;
+    border-radius:10px;
+}
+
+.desc {
+    border: 2px solid black;
+    text-align: center;
+    border-collapse: collapse;
+}
+
+.desc th {
+    background-color: var(--blue);
+    color:white;
+}
+
+.desc td, .desc th{
+    border: 1px solid black;
+    border-right: 2px solid black;
+}

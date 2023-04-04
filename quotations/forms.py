@@ -5,7 +5,7 @@ from .models import Quote, Item
 class QuoteForm(forms.ModelForm):
     class Meta:
         model = Quote
-        fields = ['customer', 'description', 'note']
+        fields = ['customer', 'description', 'note', "contact"]
 
 
 class ItemForm(forms.ModelForm):

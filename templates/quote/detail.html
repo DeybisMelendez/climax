@@ -1,31 +1,9 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1>Cotización No. {{ quote.number }}</h1>
-<p>Cliente: {{ quote.customer.name }}</p>
-<p>Descripción: {{ quote.description }}</p>
-<p>Nota: {{ quote.note }}</p>
-<hr />
-<table>
-	<thead>
-		<tr>
-			<th>Cantidad</th>
-			<th>Descripción</th>
-			<th>Precio</th>
-			<th>Total</th>
-		</tr>
-	</thead>
-	<tbody>
-		{% for item in items %}
-		<tr>
-			<td>{{ item.quantity }}</td>
-			<td>{{ item.description }}</td>
-			<td>{{ item.price }}</td>
-			<td>{{ item.total }}</td>
-		</tr>
-		{% endfor %}
-		<tr>
-			<td colspan="3" align="center">Total</td>
-			<td>{{ quote.total}}</td>
-		</tr>
-	</tbody>
-</table>
+<a
+	class="button green-bg white"
+	href="{% url 'quote_pdf' quote.number %}"
+	target="_blank"
+	><i class="material-icons">file_download</i> Generar PDF</a
+>
+<div>{% include "quote/base_detail.html" %}</div>
 {% endblock %}

@@ -2,6 +2,9 @@ from django.shortcuts import render, get_object_or_404, redirect
 from .forms import QuoteForm, ItemFormset
 from .models import Quote
 from django.db.models import Q
+# PDF GENERATION
+from django_weasyprint import WeasyTemplateResponseMixin
+from django.views.generic.base import TemplateView
 
 
 def quote_detail(request, pk):
@@ -89,3 +92,35 @@ def quote_delete(request, pk):
 
     context = {'quote': quote}
     return render(request, 'quote/delete.html', context)
+
+
+class QuotePDFView(WeasyTemplateResponseMixin, TemplateView):
+    model = Quote
+    template_name = 'quote/pdf.html'
+    pdf_attachment = False
+
+    def get_object(self):
+        return get_object_or_404(self.model, pk=self.kwargs.get('pk'))
+
+    def get_pdf_kwargs(self):
+        # Agregar opciones de página
+        return {
+            # 'stylesheets': [settings.STATIC_ROOT + 'css/pdf_styles.css'],
+            'presentational_hints': True,
+            'page-size': 'Letter',
+            'margin-top': '1cm',
+            'margin-right': '1cm',
+            'margin-bottom': '1cm',
+            'margin-left': '1cm',
+        }
+
+    def get_pdf_filename(self):
+        return f'quote_{self.get_object().pk}.pdf'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        quote = self.get_object()
+        items = quote.item_set.all()
+        context['quote'] = quote
+        context["items"] = items
+        return context

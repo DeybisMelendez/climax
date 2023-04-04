@@ -1,17 +1,54 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1>Cotizaciones</h1>
-<form action="{% url 'quote_search' %}" method="GET">
-	<input type="text" name="q" placeholder="Buscar cotización..." />
-	<button type="submit">Buscar</button>
-</form>
-<ul>
-	{% for quote in quotes %}
-	<li>
-		<a href="{% url 'quote_detail' quote.number %}">{{ quote }}</a>
-		<a href="{% url 'quote_delete' quote.number %}">Eliminar</a>
-	</li>
-	{% empty %}
-	<li>No hay cotizaciones.</li>
-	{% endfor %}
-</ul>
+<div class="grid">
+	<div class="s12 grid">
+		<div class="flex align-center s10">
+			<i class="material-icons">description</i>
+			<h6>Cotizaciones</h6>
+		</div>
+		<div class="s2 flex align-center">
+			<a href="{% url 'quote_create'%}" class="s12 button blue-bg white"
+			><i class="material-icons">note_add</i>
+			Crear Cotización</a>
+		</div>
+	</div>
+	<div class="s12 grid">
+		
+		<form action="{% url 'quote_search' %}" method="GET" class="s12 flex align-center">
+			<input
+				class="full-width"
+				type="text"
+				name="q"
+				placeholder="Buscar cotizaciones..."
+			/>
+	</div>
+	</form>
+	<table class="s12">
+		<tr>
+			<th>No</th>
+			<th>Fecha</th>
+			<th>Cliente</th>
+			<th>Moneda</th>
+			<th>Total</th>
+			<th>Acciones</th>
+		</tr>
+	
+		{% for quote in quotes %}
+		<tr>
+			<td>{{quote.number}}</td>
+			<td>Fecha?</td>
+			<td><a href="{% url 'quote_detail' quote.number %}" class="link blue">{{quote.customer.name}}</a></td>
+			<td>Moneda?</td>
+			<td>{{ quote.total }}</td>
+			<td class="flex">
+				<a href="{% url 'quote_update' quote.number %}" class="orange"><i class="material-icons">edit</i></a>
+				<a href="{% url 'quote_delete' quote.number %}" class="red"><i class="material-icons">delete</i></a>
+			</td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="5">No hay cotizaciones.</td>
+		</tr>
+		{% endfor %}
+	</table>
+</div>
 {% endblock %}

@@ -1,12 +1,7 @@
 {% extends 'layouts/base.html' %} {% block content %}
-
 <h1>Cliente: {{customer.name}}</h1>
-<table>
-	<tr>
-		<th>Cliente</th>
-		<th>RUC</th>
-		<th>Dirección</th>
-		<th></th>
-	</tr>
-</table>
+<p><b>RUC: </b>{{customer.ruc}}</p>
+<p><b>Correo: </b>{{customer.email}}</p>
+<p><b>Teléfono: </b>{{customer.phone}}</p>
+<p><b>Dirección: </b>{{customer.address}}</p>
 {% endblock%}

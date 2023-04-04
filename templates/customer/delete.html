@@ -1,9 +1,17 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1>Eliminar Cliente</h1>
-<p>¿Estás seguro que deseas eliminar este cliente? "{{ customer }}"?</p>
+<h6 class="red flex align-center">
+	<i class="material-icons">warning</i>Eliminar Cliente
+</h6>
+<p>¿Estás seguro que deseas eliminar este cliente? <b>"{{ customer }}"</b>?</p>
 <form method="post">
 	{% csrf_token %}
-	<button type="submit">Eliminar</button>
-	<a href="{% url 'customer_detail' customer.id %}">Cancelar</a>
+	<button type="submit" class="button red-bg white">
+		<i class="material-icons">delete_forever</i> Eliminar
+	</button>
+	<a
+		href="{% url 'customer_detail' customer.id %}"
+		class="button orange-bg white"
+		><i class="material-icons">cancel</i>Cancelar</a
+	>
 </form>
 {% endblock %}

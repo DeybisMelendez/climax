@@ -1,0 +1,22 @@
+<nav class="navbar blue-darken-3-bg">
+	<a href="#" class="logo white">Climax</a>
+	<a class="menu-toggle"><i class="material-icons white">menu</i></a>
+	<ul class="menu">
+		<a href="/" class="menu-item white">Inicio</a>
+		<a href="{% url 'quote_search' %}" class="menu-item white"
+			>Cotizaciones</a
+		>
+		<a href="{% url 'customer_search'%}" class="menu-item white"
+			>Clientes</a
+		>
+	</ul>
+</nav>
+
+<script>
+	const menuToggle = document.querySelector(".menu-toggle");
+	const menu = document.querySelector(".menu");
+
+	menuToggle.addEventListener("click", () => {
+		menu.classList.toggle("show-menu");
+	});
+</script>

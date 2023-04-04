@@ -1,0 +1,109 @@
+{% load static %} {% load humanize %}
+<div class="pdf">
+	<link rel="stylesheet" href="{% static 'css/pdf.css' %}" />
+
+	<div class="center">
+		<img class="logo" src="{% static 'img/logo.png' %}" />
+	</div>
+	<div class="center">
+		<b>REFRIGERACIÓN AUTOMOTRIZ Y DE TRANSPORTE REFRIGERADO.</b>
+	</div>
+	<div class="center">
+		<b class="center">¡EQUIPOS, REPUESTOS Y SERVICIOS!</b>
+	</div>
+	<div class="center">
+		<b>
+			SEMÁFOROS RIELES DE SABANA GRANDE, 600 MTS AL SUR, 500 MTS OESTE
+		</b>
+	</div>
+	<div class="center">
+		<b>Teléfonos: (505) 22222507, 83323375, 81620060</b>
+	</div>
+	<div class="center">
+		<b>Managua - Nicaragua. RUC # 0010903830007N</b>
+	</div>
+
+	<div class="margin right">
+		<b class="cotizacion"><i>Cotización No. {{ quote.number }}</i></b>
+	</div>
+
+	<table class="full-width desc margin">
+		<tr>
+			<th>RUC</th>
+			<th>Cliente</th>
+			<th>Contacto</th>
+			<th>Fecha</th>
+		</tr>
+		<tr>
+			<td>{{ quote.customer.ruc }}</td>
+			<td>{{ quote.customer.name }}</td>
+			<td>{{ quote.customer.contact }}</td>
+			<td>{{ quote.date }}</td>
+		</tr>
+		<tr>
+			<th>Ciudad</th>
+			<th>Fecha de caducidad</th>
+			<th>Moneda</th>
+			<th>T/C</th>
+		</tr>
+		<tr>
+			<td>{{ quote.customer.city }}</td>
+			<td>{{ quote.expiration }} días</td>
+			<td>{{ quote.currency}}</td>
+			<td>OFICIAL</td>
+		</tr>
+	</table>
+	{% if quote.description %}
+	<table class="full-width desc margin">
+		<tr>
+			<th>Descripción</th>
+		</tr>
+		<tr>
+			<td><p>{{ quote.description }}</p></td>
+		</tr>
+	</table>
+	{% endif %}
+
+	<table class="full-width desc margin">
+		<thead>
+			<tr>
+				<th>Cantidad</th>
+				<th colspan="5">Descripción</th>
+				<th>Precio</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for item in items %}
+			<tr>
+				<td>{{ item.quantity|intcomma }}</td>
+				<td colspan="5">{{ item.description }}</td>
+				<td>{{ item.price|intcomma }}</td>
+				<td>{{ item.total|intcomma }}</td>
+			</tr>
+			{% endfor %}
+			<tr>
+				<td colspan="7"><b>Total</b></td>
+				<td><b>{{ quote.total|intcomma}}</b></td>
+			</tr>
+		</tbody>
+	</table>
+	{% if quote.note %}
+	<table class="desc full-width">
+		<tr>
+			<th class="center">Nota</th>
+		</tr>
+		<tr>
+			<td>{{quote.note}}</td>
+		</tr>
+	</table>
+	{% endif%}
+	<div class="center">
+		<b
+			>Favor elaborar cheque a nombre de: Bayardo Meléndez Vargas
+			(001-090383-0007N)</b
+		>
+		<br />
+		<b>CUOTA FIJA</b>
+	</div>
+</div>

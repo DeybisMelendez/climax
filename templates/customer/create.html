@@ -1,9 +1,76 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<h1>Añadir cliente nuevo</h1>
-<form action="" method="post">
-	{% csrf_token %} {{form.as_p}}
-	<input type="submit" value="Añadir" />
-</form>
+<div class="grid gap-1">
+	<div class="s12 flex align-center">
+		<i class="material-icons">person_add</i>
+		<h6>Añadir cliente</h6>
+	</div>
+	<form action="" method="post" class="s12 grid gap-1">
+		{% csrf_token %}
+		<div class="s12">
+			<label for="{{form.name.name}}">Nombre:</label>
+			<input
+				type="text"
+				maxlength="255"
+				name="{{form.name.name}}"
+				id="{{form.name.name}}"
+				placeholder="Nombre"
+				required
+				class="full-width"
+			/>
+		</div>
+		<div class="s12">
+			<label for="{{form.ruc.name}}">RUC:</label>
+			<input
+				type="text"
+				maxlength="100"
+				name="{{form.ruc.name}}"
+				id="{{form.ruc.name}}"
+				placeholder="RUC"
+				class="full-width"
+			/>
+		</div>
+		<div class="s12">
+			<label for="{{form.address.name}}">Dirección:</label>
+			<input
+				type="text"
+				maxlength="255"
+				name="{{form.address.name}}"
+				id="{{form.address.name}}"
+				placeholder="Dirección"
+				class="full-width"
+			/>
+		</div>
+		<div class="s12">
+			<label for="{{form.email.name}}">Correo:</label>
+			<input
+				type="email"
+				maxlength="255"
+				name="{{form.email.name}}"
+				id="{{form.email.name}}"
+				placeholder="Correo"
+				class="full-width"
+			/>
+		</div>
+		<div class="s12">
+			<label for="{{form.phone.name}}">Teléfono:</label>
+			<input
+				type="text"
+				maxlength="20"
+				name="{{form.phone.name}}"
+				id="{{form.phone.name}}"
+				placeholder="Teléfono"
+				class="full-width"
+			/>
+		</div>
+		<div class="s12 flex justify-end">
+			<input
+				type="submit"
+				class="button green-bg white"
+				value="Guardar"
+			/>
+		</div>
+	</form>
+</div>
 
 {% endblock %}
