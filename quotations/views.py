@@ -28,6 +28,10 @@ def quote_create(request):
                     item.save()
 
             return redirect('quote_detail', pk=quote.pk)
+        else:
+            print("---------- ERROR ----------")
+            print("form", form.errors)
+            print("formset", formset.errors)
 
     else:
         form = QuoteForm()

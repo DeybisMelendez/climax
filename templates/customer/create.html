@@ -6,70 +6,14 @@
 		<h6>Añadir cliente</h6>
 	</div>
 	<form action="" method="post" class="s12 grid gap-1">
-		{% csrf_token %}
-		<div class="s12">
-			<label for="{{form.name.name}}">Nombre:</label>
-			<input
-				type="text"
-				maxlength="255"
-				name="{{form.name.name}}"
-				id="{{form.name.name}}"
-				placeholder="Nombre"
-				required
-				class="full-width"
-			/>
-		</div>
-		<div class="s12">
-			<label for="{{form.ruc.name}}">RUC:</label>
-			<input
-				type="text"
-				maxlength="100"
-				name="{{form.ruc.name}}"
-				id="{{form.ruc.name}}"
-				placeholder="RUC"
-				class="full-width"
-			/>
-		</div>
-		<div class="s12">
-			<label for="{{form.address.name}}">Dirección:</label>
-			<input
-				type="text"
-				maxlength="255"
-				name="{{form.address.name}}"
-				id="{{form.address.name}}"
-				placeholder="Dirección"
-				class="full-width"
-			/>
-		</div>
-		<div class="s12">
-			<label for="{{form.email.name}}">Correo:</label>
-			<input
-				type="email"
-				maxlength="255"
-				name="{{form.email.name}}"
-				id="{{form.email.name}}"
-				placeholder="Correo"
-				class="full-width"
-			/>
-		</div>
-		<div class="s12">
-			<label for="{{form.phone.name}}">Teléfono:</label>
-			<input
-				type="text"
-				maxlength="20"
-				name="{{form.phone.name}}"
-				id="{{form.phone.name}}"
-				placeholder="Teléfono"
-				class="full-width"
-			/>
-		</div>
-		<div class="s12 flex justify-end">
-			<input
-				type="submit"
-				class="button green-bg white"
-				value="Guardar"
-			/>
-		</div>
+		{% csrf_token %} {% for field in form %}
+		<div class="s12 m6 l4">{{ field.label_tag }} {{ field }}</div>
+		{% endfor %}
+		<input
+			type="submit"
+			class="button green-bg white s12"
+			value="Agregar"
+		/>
 	</form>
 </div>
 
