@@ -59,7 +59,7 @@
 			<th>Descripción</th>
 		</tr>
 		<tr>
-			<td><p>{{ quote.description }}</p></td>
+			<td><p>{{ quote.get_description_md|safe }}</p></td>
 		</tr>
 	</table>
 	{% endif %}

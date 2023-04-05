@@ -1,6 +1,7 @@
 from django.db import models
 from customers.models import Customer
 from datetime import date
+from markdown import markdown
 
 
 class Quote(models.Model):
@@ -20,6 +21,9 @@ class Quote(models.Model):
         items = self.item_set.all()
         total = sum([item.total() for item in items])
         return total
+
+    def get_description_md(self):
+        return markdown(self.description)
 
 
 class Item(models.Model):
