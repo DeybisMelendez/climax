@@ -5,7 +5,7 @@ from .models import Customer
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['name', 'ruc', 'email', 'phone', 'address', 'city']
+        fields = ['name', 'ruc', 'email', 'phone', 'city', 'address']
         labels = {
             'name': 'Nombre',
             'ruc': 'RUC',

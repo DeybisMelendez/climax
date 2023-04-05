@@ -25,6 +25,9 @@ class Quote(models.Model):
     def get_description_md(self):
         return markdown(self.description)
 
+    def get_note_md(self):
+        return markdown(self.note)
+
 
 class Item(models.Model):
     quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
