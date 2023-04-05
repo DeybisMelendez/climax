@@ -27,9 +27,12 @@
 		<tbody id="items-formset"></tbody>
 	</table>
 
-	<button id="add-row">Agregar fila</button>
-
-	<button type="submit">Guardar</button>
+	<div class="flex justify-space-evenly">
+		<button id="add-row" class="button blue-bg white">Agregar fila</button>
+		<button type="submit" class="button green-bg white" class>
+			Crear Cotización
+		</button>
+	</div>
 </form>
 
 <script>
@@ -45,7 +48,7 @@
             <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description" class="description-input"></td>
             <td><input type="number" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price" class="price-input"></td>
             <td><span class="total-span">0</span></td>
-            <td><button class="remove-row">Eliminar</button></td>
+            <td><button class="remove-row button red-bg white"><i class="material-icons">delete</i></button></td>
             `;
 			document.querySelector("#item-table tbody").appendChild(row);
 			formset.value = newIndex + 1; // actualizar el número de formularios

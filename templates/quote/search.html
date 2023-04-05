@@ -1,4 +1,5 @@
 {% extends 'layouts/base.html' %} {% block content %}
+{% load humanize %}
 <div class="grid">
 	<div class="s12 grid">
 		<div class="flex align-center s10">
@@ -27,18 +28,17 @@
 			<th>No</th>
 			<th>Fecha</th>
 			<th>Cliente</th>
-			<th>Moneda</th>
+			<th>Descripción</th>
 			<th>Total</th>
 			<th>Acciones</th>
 		</tr>
-	
 		{% for quote in quotes %}
 		<tr>
 			<td>{{quote.number}}</td>
-			<td>Fecha?</td>
+			<td>{{quote.date|date:'d/m/Y'}}</td>
 			<td><a href="{% url 'quote_detail' quote.number %}" class="link blue">{{quote.customer.name}}</a></td>
-			<td>Moneda?</td>
-			<td>{{ quote.total }}</td>
+			<td>{{quote.description|truncatechars:64}}</td>
+			<td>{{quote.unit}} {{ quote.total|intcomma }}</td>
 			<td class="flex">
 				<a href="{% url 'quote_update' quote.number %}" class="orange"><i class="material-icons">edit</i></a>
 				<a href="{% url 'quote_delete' quote.number %}" class="red"><i class="material-icons">delete</i></a>

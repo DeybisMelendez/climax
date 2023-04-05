@@ -78,13 +78,13 @@
 			<tr>
 				<td>{{ item.quantity|intcomma }}</td>
 				<td colspan="5">{{ item.description }}</td>
-				<td>{{ item.price|intcomma }}</td>
-				<td>{{ item.total|intcomma }}</td>
+				<td>{{quote.unit}} {{ item.price|intcomma }}</td>
+				<td>{{quote.unit}} {{ item.total|intcomma }}</td>
 			</tr>
 			{% endfor %}
 			<tr>
 				<td colspan="7"><b>Total</b></td>
-				<td><b>{{ quote.total|intcomma}}</b></td>
+				<td><b>{{quote.unit}} {{ quote.total|intcomma}}</b></td>
 			</tr>
 		</tbody>
 	</table>
