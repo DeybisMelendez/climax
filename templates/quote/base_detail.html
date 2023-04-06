@@ -1,7 +1,6 @@
 {% load static %} {% load humanize %}
+<link rel="stylesheet" href="{% static 'css/pdf.css' %}" />
 <div class="pdf">
-	<link rel="stylesheet" href="{% static 'css/pdf.css' %}" />
-
 	<div class="center">
 		<img class="logo" src="{% static 'img/logo.png' %}" />
 	</div>
@@ -56,10 +55,10 @@
 	{% if quote.description %}
 	<table class="full-width desc margin">
 		<tr>
-			<th>Descripción</th>
+			<th class="center">Descripción</th>
 		</tr>
 		<tr>
-			<td><p>{{ quote.get_description_md|safe }}</p></td>
+			<td class="left markdown">{{ quote.get_description_md|safe }}</td>
 		</tr>
 	</table>
 	{% endif %}
@@ -78,13 +77,15 @@
 			<tr>
 				<td>{{ item.quantity|intcomma }}</td>
 				<td colspan="5">{{ item.description }}</td>
-				<td>{{quote.unit}} {{ item.price|intcomma }}</td>
-				<td>{{quote.unit}} {{ item.total|intcomma }}</td>
+				<td class="right">{{quote.unit}} {{ item.price|intcomma }}</td>
+				<td class="right">{{quote.unit}} {{ item.total|intcomma }}</td>
 			</tr>
 			{% endfor %}
 			<tr>
 				<td colspan="7"><b>Total</b></td>
-				<td><b>{{quote.unit}} {{ quote.total|intcomma}}</b></td>
+				<td class="right">
+					<b>{{quote.unit}} {{ quote.total|intcomma}}</b>
+				</td>
 			</tr>
 		</tbody>
 	</table>
@@ -94,7 +95,7 @@
 			<th class="center">Nota</th>
 		</tr>
 		<tr>
-			<td>{{quote.get_note_md}}</td>
+			<td class="left markdown">{{quote.get_note_md|safe }}</td>
 		</tr>
 	</table>
 	{% endif%}

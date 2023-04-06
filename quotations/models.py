@@ -13,6 +13,7 @@ class Quote(models.Model):
     date = models.DateField(default=date.today)
     currency = models.TextField(max_length=16, blank=True, default="Dólares")
     unit = models.CharField(max_length=4, blank=True, default="$")
+    expiration = models.IntegerField(default=15, blank=True)
 
     def __str__(self):
         return f"No {self.number} - Cliente: {self.customer.name}"

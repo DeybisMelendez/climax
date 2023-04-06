@@ -6,7 +6,7 @@ class QuoteForm(forms.ModelForm):
     class Meta:
         model = Quote
         fields = ["date", 'customer', "contact", "currency", "unit",
-                  'description', "note"]
+                  'description', "note", "expiration"]
         labels = {
             "date": "Fecha",
             "customer": "Cliente",
@@ -15,6 +15,7 @@ class QuoteForm(forms.ModelForm):
             "unit": "Unidad de moneda",
             "description": "Descripción",
             "note": "Nota",
+            "expiration": "Caduca (días)"
         }
         widgets = {
             "date": forms.DateInput(attrs={
@@ -30,14 +31,16 @@ class QuoteForm(forms.ModelForm):
                 "placeholder": "Ej: Juan Pérez",
             }),
             "note": forms.Textarea(attrs={
+                "style": "width:100%",
                 "class": "full-width",
                 "placeholder": "Ej: Garantía por 30 días.",
-                "rows": "4"
+                "rows": "5"
             }),
             "description": forms.Textarea(attrs={
+                "style": "width:100%",
                 "class": "full-width",
                 "placeholder": "Ej: Se realizó prueba de frío.",
-                "rows": "4"
+                "rows": "10"
             }),
             "currency": forms.TextInput(attrs={
                 "class": "full-width",
@@ -46,6 +49,10 @@ class QuoteForm(forms.ModelForm):
             "unit": forms.TextInput(attrs={
                 "class": "full-width",
                 "placeholder": "Ej: C$",
+            }),
+            "expiration": forms.TextInput(attrs={
+                "class": "full-width",
+                "placeholder": "Ej: 15",
             }),
         }
 

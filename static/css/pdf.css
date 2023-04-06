@@ -16,7 +16,15 @@ p, b, i, th, td{
     font-size: 12px;
     margin:0;
 }
-
+h1 {
+    font-size: 18px;
+}
+h2 {
+    font-size: 16px;
+}
+h3 {
+    font-size: 14px;
+}
 .logo {
     width: 300px;
     height: auto;
@@ -58,4 +66,8 @@ p, b, i, th, td{
 .desc td, .desc th{
     border: 1px solid black;
     border-right: 2px solid black;
+}
+
+.markdown ul,.markdown ol {
+    list-style-position: inside;
 }

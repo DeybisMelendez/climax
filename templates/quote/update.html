@@ -1,91 +1,62 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<h1>Actualizar cotización</h1>
-<form method="post">
+<h1>Nueva cotización</h1>
+<form method="post" class="flex">
 	{% csrf_token %}
-	<label for="{{ form.customer.id_for_label }}">Cliente:</label>
-	{{ form.customer }}
-
-	<label for="{{ form.description.id_for_label }}">Descripción:</label>
-	{{ form.description }}
-
-	<label for="{{ form.note.id_for_label }}">Nota:</label>
-	{{ form.note }} {{ formset.management_form }}
-	<table id="item-table">
+	<div class="grid gap-1">
+		<div class="s6 m4 l2">{{form.date.label_tag}} {{form.date}}</div>
+		<div class="s6 m4 l2">
+			{{form.customer.label_tag}} {{form.customer}}
+		</div>
+		<div class="s6 m4 l2">{{form.contact.label_tag}} {{form.contact}}</div>
+		<div class="s6 m4 l2">
+			{{form.currency.label_tag}} {{form.currency}}
+		</div>
+		<div class="s6 m4 l2">{{form.unit.label_tag}} {{form.unit}}</div>
+		<div class="s6 m4 l2">
+			{{form.expiration.label_tag}} {{form.expiration}}
+		</div>
+		<div class="s12">
+			{{form.description.label_tag}} {{form.description}}
+		</div>
+		<div class="s12">{{form.note.label_tag}} {{form.note}}</div>
+	</div>
+	{{ formset.management_form }}
+	<table id="item-table" class="s12">
 		<thead>
 			<tr>
 				<th>Cantidad</th>
 				<th>Descripción</th>
 				<th>Precio unitario</th>
-				<th></th>
+				<th>Total</th>
+				<th>Acciones</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody id="items-formset">
 			{% for form in formset %}
 			<tr>
 				<td>{{ form.quantity }}</td>
 				<td>{{ form.description }}</td>
 				<td>{{ form.price }}</td>
+				<td><span class="total-span">0</span></td>
 				<td>
-					{{ form.id }} {{ form.DELETE }}
-					<!--<button class="remove-row">Eliminar</button>-->
+					{{form.id}}
+					<a href="#" class="remove-row button red-bg white"
+						><i class="material-icons">delete</i>Borrar</a
+					>
 				</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-	<button id="add-row">Agregar fila</button>
 
-	<button type="submit">Guardar</button>
+	<div class="flex justify-space-evenly">
+		<a href="#!" id="add-row" class="button blue-bg white">Agregar fila</a>
+		<button type="submit" class="button green-bg white" class>
+			Actualizar Cotización
+		</button>
+	</div>
 </form>
-
-<script>
-	function updateFormIndices() {
-		const rows = document.querySelectorAll("#item-table tbody tr");
-		rows.forEach(function (row, index) {
-			const inputs = row.querySelectorAll("input");
-			inputs.forEach(function (input) {
-				const oldName = input.getAttribute("name");
-				const newName = oldName.replace(/-\d+-/, "-" + index + "-");
-				const oldId = input.getAttribute("id");
-				const newId = oldId.replace(/-\d+-/, "-" + index + "-");
-				input.setAttribute("name", newName);
-				input.setAttribute("id", newId);
-			});
-		});
-	}
-
-	document
-		.getElementById("add-row")
-		.addEventListener("click", function (event) {
-			event.preventDefault();
-			const formset = document.getElementById("id_item_set-TOTAL_FORMS");
-			const newIndex = parseInt(formset.value);
-			const row = document.createElement("tr");
-			row.innerHTML = `
-            <td><input type="number" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity"></td>
-            <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description"></td>
-            <td><input type="number" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price"></td>
-            <td><button class="remove-row">Eliminar</button></td>
-            `;
-			document.querySelector("#item-table tbody").appendChild(row);
-			formset.value = newIndex + 1; // actualizar el número de formularios
-		});
-
-	document
-		.querySelector("#item-table tbody")
-		.addEventListener("click", function (event) {
-			if (event.target.classList.contains("remove-row")) {
-				event.preventDefault();
-				event.target.closest("tr").remove();
-				const formset = document.getElementById(
-					"id_item_set-TOTAL_FORMS"
-				);
-				const numForms = parseInt(formset.value);
-				formset.value = numForms - 1; // actualizar el número de formularios
-				updateFormIndices();
-			}
-		});
-</script>
-
+{% load static %}
+<script src="{% static 'js/items.js' %}"></script>
 {% endblock %}
