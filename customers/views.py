@@ -21,12 +21,6 @@ def customer_search(request):
     return render(request, 'customer/search.html', context)
 
 
-def customer_detail(request, pk):
-    customer = get_object_or_404(Customer, pk=pk)
-    context = {'customer': customer}
-    return render(request, 'customer/detail.html', context)
-
-
 def customer_create(request):
     if request.method == "POST":
         form = CustomerForm(request.POST)
@@ -44,7 +38,7 @@ def customer_update(request, pk):
     if request.method == 'POST':
         if form.is_valid():
             form.save()
-            return redirect('customer_detail', pk=customer.pk)
+            return redirect('customer_search', pk=customer.pk)
         else:
             if form.errors:
                 print("form:", form.errors)

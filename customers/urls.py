@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import customer_search, customer_detail, customer_create, customer_delete, customer_update
+from .views import customer_search, customer_create, customer_delete, customer_update
 
 urlpatterns = [
     path('', customer_search, name='customer_search'),

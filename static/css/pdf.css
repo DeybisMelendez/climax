@@ -54,7 +54,7 @@ h3 {
 
 .desc {
     border: 2px solid black;
-    text-align: center;
+    /*text-align: center;*/
     border-collapse: collapse;
 }
 
