@@ -1,6 +1,8 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1>Eliminar cotización</h1>
-<p>¿Estás seguro que deseas eliminar la cotización "{{ quote }}"?</p>
+<h6 class="red flex align-center">
+	<span class="material-icons">warning</span>Eliminar Cotización
+</h6>
+<p>¿Estás seguro que deseas eliminar la cotización <b>"{{ quote }}"</b>?</p>
 <form method="post">
 	{% csrf_token %}
 	<button type="submit" class="button red-bg white">
