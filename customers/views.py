@@ -29,7 +29,7 @@ def customer_create(request):
             return redirect("customer_search")
     form = CustomerForm()
     context = {"form": form}
-    return render(request, "customer/create.html", context)
+    return render(request, "customer/update.html", context)
 
 
 def customer_update(request, pk):
