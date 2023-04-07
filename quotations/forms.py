@@ -6,7 +6,7 @@ class QuoteForm(forms.ModelForm):
     class Meta:
         model = Quote
         fields = ["date", 'customer', "contact", "currency", "unit",
-                  'description', "note", "expiration"]
+                  'description', "note", "expiration", "discount"]
         labels = {
             "date": "Fecha",
             "customer": "Cliente",
@@ -15,7 +15,7 @@ class QuoteForm(forms.ModelForm):
             "unit": "Unidad de moneda",
             "description": "Descripción",
             "note": "Nota",
-            "expiration": "Caduca (días)"
+            "expiration": "Caduca (días)",
         }
         widgets = {
             "date": forms.DateInput(attrs={
@@ -53,6 +53,12 @@ class QuoteForm(forms.ModelForm):
             "expiration": forms.TextInput(attrs={
                 "class": "full-width",
                 "placeholder": "Ej: 15",
+            }),
+            "discount": forms.NumberInput(attrs={
+                "class": "full-width",
+                "placeholder": "Por ej: 100",
+                "step": "0.01",
+                "id": "discount"
             }),
         }
 

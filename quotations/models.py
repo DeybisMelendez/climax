@@ -15,14 +15,20 @@ class Quote(models.Model):
     currency = models.TextField(max_length=16, blank=True, default="Dólares")
     unit = models.CharField(max_length=4, blank=True, default="$")
     expiration = models.IntegerField(default=15, blank=True)
+    discount = models.DecimalField(
+        decimal_places=2, max_digits=10, blank=False, null=False, default=0)
 
     def __str__(self):
         return f"No {self.number} de {self.customer.name}"
 
-    def total(self):
+    def sub_total(self):
         items = self.item_set.all()
         total = sum([item.total() for item in items])
         return total
+
+    def total(self):
+        total = self.sub_total()
+        return total-self.discount
 
     def get_description_md(self):
         return markdown(self.description)
