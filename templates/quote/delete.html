@@ -3,7 +3,11 @@
 <p>¿Estás seguro que deseas eliminar la cotización "{{ quote }}"?</p>
 <form method="post">
 	{% csrf_token %}
-	<button type="submit">Eliminar</button>
-	<a href="{% url 'quote_detail' quote.number %}">Cancelar</a>
+	<button type="submit" class="button red-bg white">
+		<span class="material-icons">delete</span> Eliminar
+	</button>
+	<a href="{% url 'quote_search' %}" class="button orange-bg white"
+		><span class="material-icons">cancel</span> Cancelar</a
+	>
 </form>
 {% endblock %}

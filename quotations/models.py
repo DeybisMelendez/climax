@@ -17,7 +17,7 @@ class Quote(models.Model):
     expiration = models.IntegerField(default=15, blank=True)
 
     def __str__(self):
-        return f"No {self.number} - Cliente: {self.customer.name}"
+        return f"No {self.number} de {self.customer.name}"
 
     def total(self):
         items = self.item_set.all()
