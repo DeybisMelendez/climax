@@ -41,7 +41,7 @@ def quote_create(request):
         'form': form,
         'formset': formset,
     }
-    return render(request, 'quote/create.html', context)
+    return render(request, 'quote/update.html', context)
 
 
 def quote_update(request, pk):

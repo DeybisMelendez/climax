@@ -2,6 +2,7 @@ from django.db import models
 from customers.models import Customer
 from datetime import date
 from markdown import markdown
+import math
 
 
 class Quote(models.Model):
@@ -32,10 +33,11 @@ class Quote(models.Model):
 
 class Item(models.Model):
     quote = models.ForeignKey(Quote, on_delete=models.CASCADE)
-    quantity = models.PositiveIntegerField(default=1, blank=False, null=False)
+    quantity = models.DecimalField(
+        decimal_places=2, max_digits=10, blank=False, null=False, default=1)
     description = models.CharField(max_length=255, blank=False, null=False)
     price = models.DecimalField(
-        decimal_places=2, max_digits=10, blank=False, null=False)
+        decimal_places=2, max_digits=10, blank=False, null=False, default=1)
 
     def total(self):
         return self.quantity * self.price

@@ -38,7 +38,7 @@
 			<td>{{quote.date|date:'d/m/Y'}}</td>
 			<td><a href="{% url 'quote_detail' quote.number %}" class="link blue">{{quote.customer.name}}</a></td>
 			<td>{{quote.description|truncatechars:64}}</td>
-			<td>{{quote.unit}} {{ quote.total|intcomma }}</td>
+			<td class="right-text">{{quote.unit}} {{ quote.total|floatformat:2|intcomma }}</td>
 			<td class="flex">
 				<a href="{% url 'quote_update' quote.number %}" class="orange"><i class="material-icons">edit</i></a>
 				<a href="{% url 'quote_delete' quote.number %}" class="red"><i class="material-icons">delete</i></a>

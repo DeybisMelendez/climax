@@ -61,6 +61,23 @@ class ItemForm(forms.ModelForm):
     class Meta:
         model = Item
         fields = ['quantity', 'description', 'price']
+        widgets = {
+            "quantity": forms.NumberInput(attrs={
+                "class": "quantity-input full-width",
+                "placeholder": "Por ej: 1",
+                "step": "0.01",
+            }),
+            "description": forms.TextInput(attrs={
+                "class": "description-input full-width",
+                "placeholder": "Por ej: Banda Triple",
+                "maxlength": "255"
+            }),
+            "price": forms.NumberInput(attrs={
+                "class": "price-input full-width",
+                "placeholder": "Por ej: 1",
+                "step": "0.01"
+            }),
+        }
 
 
 ItemFormset = forms.inlineformset_factory(

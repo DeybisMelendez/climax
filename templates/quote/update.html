@@ -1,6 +1,7 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<h1>Nueva cotización</h1>
+<h1>Cotización</h1>
+
 <form method="post" class="flex">
 	{% csrf_token %}
 	<div class="grid gap-1">
@@ -41,19 +42,25 @@
 				<td><span class="total-span">0</span></td>
 				<td>
 					{{form.id}}
-					<a href="#!" class="remove-row button red-bg white"
-						><i class="material-icons">delete</i>Borrar</a
-					>
+					<a href="#!" class="remove-row button red-bg white">
+						<i class="material-icons">delete</i>
+						Borrar
+					</a>
 				</td>
 			</tr>
 			{% endfor %}
 		</tbody>
 	</table>
-
+	<table>
+		<tr>
+			<th>Total cotización</th>
+			<td id="total">0.00</td>
+		</tr>
+	</table>
 	<div class="flex justify-space-evenly">
 		<a href="#!" id="add-row" class="button blue-bg white">Agregar fila</a>
 		<button type="submit" class="button green-bg white" class>
-			Actualizar Cotización
+			Guardar Cotización
 		</button>
 	</div>
 </form>
