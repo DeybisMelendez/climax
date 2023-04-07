@@ -40,42 +40,42 @@
 					<td>{{ form.quantity }}</td>
 					<td>{{ form.description }}</td>
 					<td>{{ form.price }}</td>
-					<td><span class="total-item">0</span></td>
+					<td class="total-item right-text"></td>
 					<td>
 						{{form.id}}
 						<a href="#!" class="remove-row button red-bg white">
-							<span class="material-icons">delete</span>
-							Borrar
+							<span class="material-icons">delete</span>Borrar
+							fila
 						</a>
 					</td>
 				</tr>
 				{% endfor %}
 			</tbody>
+			<tbody>
+				<tr>
+					<th colspan="3" class="right-text">Subtotal cotización</th>
+					<td colspan="1" class="right-text" id="sub-total"></td>
+					<td colspan="1">
+						<a href="#!" id="add-row" class="button blue-bg white">
+							<span class="material-icons">add</span> Agregar fila
+						</a>
+					</td>
+				</tr>
+				<tr>
+					<th colspan="3" class="right-text">Descuento</th>
+					<td colspan="1">{{form.discount}}</td>
+				</tr>
+				<tr>
+					<th colspan="3" class="right-text">Total cotización</th>
+					<td colspan="1" class="right-text" id="total"></td>
+				</tr>
+			</tbody>
 		</table>
-		<div class="s12 flex justify-end">
-			<a href="#!" id="add-row" class="button blue-bg white"
-				>Agregar fila</a
-			>
-			<table>
-				<tr>
-					<th>Subtotal cotización</th>
-					<td id="sub-total"></td>
-				</tr>
-				<tr>
-					<th>Descuento</th>
-					<td>{{form.discount}}</td>
-				</tr>
-				<tr>
-					<th>Total cotización</th>
-					<td id="total"></td>
-				</tr>
-			</table>
-		</div>
 	</div>
 
 	<div class="flex justify-space-evenly">
 		<button type="submit" class="button green-bg white" class>
-			Guardar Cotización
+			<span class="material-icons">save</span> Guardar Cotización
 		</button>
 	</div>
 </form>

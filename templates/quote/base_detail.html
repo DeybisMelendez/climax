@@ -82,7 +82,25 @@
 					{{quote.unit}} {{ item.total|floatformat:2|intcomma }}
 				</td>
 			</tr>
-			{% endfor %}
+			{% endfor %} {% if quote.discount != 0%}
+			<tr>
+				<td colspan="7" class="center"><b>Sub Total</b></td>
+				<td class="right">
+					<b>
+						{{quote.unit}}
+						{{quote.sub_total|floatformat:2|intcomma}}
+					</b>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="7" class="center"><b>Descuento</b></td>
+				<td class="right">
+					<b>
+						{{quote.unit}} {{quote.discount|floatformat:2|intcomma}}
+					</b>
+				</td>
+			</tr>
+			{% endif %}
 			<tr>
 				<td colspan="7" class="center"><b>Total</b></td>
 				<td class="right">

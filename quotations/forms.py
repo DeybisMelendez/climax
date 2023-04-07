@@ -55,10 +55,11 @@ class QuoteForm(forms.ModelForm):
                 "placeholder": "Ej: 15",
             }),
             "discount": forms.NumberInput(attrs={
-                "class": "full-width",
-                "placeholder": "Por ej: 100",
+                "class": "full-width right-text",
+                "size": "10",
+                # "placeholder": "Por ej: 100",
                 "step": "0.01",
-                "id": "discount"
+                "id": "discount",
             }),
         }
 

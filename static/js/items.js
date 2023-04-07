@@ -4,10 +4,10 @@ document.getElementById("add-row").addEventListener("click", function (event) {
 	const newIndex = parseInt(formset.value);
 	const row = document.createElement("tr");
 	row.innerHTML = `
-    <td><input type="number" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity" class="quantity-input full-width"></td>
+    <td><input type="number" step="0.01" value="1.00" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity" class="quantity-input full-width"></td>
     <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description" class="description-input full-width"></td>
-    <td><input type="number" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price" class="price-input full-width"></td>
-    <td><span class="total-item">0</span></td>
+    <td><input type="number" step="0.01" value="0.00" name="item_set-${newIndex}-price" id="id_item_set-${newIndex}-price" class="price-input full-width"></td>
+    <td class="total-item right-text"></td>
     <td><a href="#!" class="remove-row button red-bg white"><span class="material-icons">delete</span>Borrar</a></td>
     `;
 	document.querySelector("#item-table tbody").appendChild(row);
