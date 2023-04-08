@@ -1,7 +1,7 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h6 class="red flex align-center">
+<h1 class="red flex align-center">
 	<span class="material-icons">warning</span>Eliminar Cliente
-</h6>
+</h1>
 <p>¿Estás seguro que deseas eliminar este cliente? <b>"{{ customer }}"</b>?</p>
 <form method="post">
 	{% csrf_token %}

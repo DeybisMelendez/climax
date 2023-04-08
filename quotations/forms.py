@@ -65,9 +65,11 @@ class QuoteForm(forms.ModelForm):
 
 
 class ItemForm(forms.ModelForm):
+    DELETE = forms.BooleanField(required=False)
+
     class Meta:
         model = Item
-        fields = ['quantity', 'description', 'price']
+        fields = ['quantity', 'description', 'price', "DELETE"]
         widgets = {
             "quantity": forms.NumberInput(attrs={
                 "class": "quantity-input full-width",
@@ -84,9 +86,10 @@ class ItemForm(forms.ModelForm):
                 "placeholder": "Por ej: 1",
                 "step": "0.01"
             }),
+            "DELETE": forms.CheckboxInput()
         }
 
 
 ItemFormset = forms.inlineformset_factory(
-    Quote, Item, form=ItemForm, extra=0
+    Quote, Item, form=ItemForm, extra=0, can_delete=True
 )

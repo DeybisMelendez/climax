@@ -1,8 +1,9 @@
-document.getElementById("add-row").addEventListener("click", function (event) {
+document.querySelector("#add-row").addEventListener("click", function (event) {
 	event.preventDefault();
-	const formset = document.getElementById("id_item_set-TOTAL_FORMS");
+	const formset = document.querySelector("#id_item_set-TOTAL_FORMS");
 	const newIndex = parseInt(formset.value);
 	const row = document.createElement("tr");
+
 	row.innerHTML = `
     <td><input type="number" step="0.01" value="1.00" name="item_set-${newIndex}-quantity" id="id_item_set-${newIndex}-quantity" class="quantity-input full-width"></td>
     <td><input type="text" name="item_set-${newIndex}-description" id="id_item_set-${newIndex}-description" class="description-input full-width"></td>

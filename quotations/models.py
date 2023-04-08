@@ -2,7 +2,6 @@ from django.db import models
 from customers.models import Customer
 from datetime import date
 from markdown import markdown
-import math
 
 
 class Quote(models.Model):
