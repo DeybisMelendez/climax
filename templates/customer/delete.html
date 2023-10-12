@@ -1,14 +1,15 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1 class="red flex align-center">
-	<span class="material-icons">warning</span>Eliminar Cliente
-</h1>
+<header class="header">
+	<i class="material-icons red">warning</i>
+	<h2>Eliminar Cliente</h2>
+</header>
 <p>¿Estás seguro que deseas eliminar este cliente? <b>"{{ customer }}"</b>?</p>
 <form method="post">
 	{% csrf_token %}
-	<button type="submit" class="button red-bg white">
+	<button type="submit" class="button red-bg">
 		<span class="material-icons">delete_forever</span> Eliminar
 	</button>
-	<a href="{% url 'customer_search' %}" class="button orange-bg white"
+	<a href="{% url 'customer_search' %}" class="button orange-bg"
 		><i class="material-icons">cancel</i>Cancelar</a
 	>
 </form>

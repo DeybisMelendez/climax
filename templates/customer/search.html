@@ -1,54 +1,47 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<div class="grid">
-	<div class="s12 grid">
-		<div class="flex align-center s10">
-			<i class="material-icons">person</i>
-			<h1>Clientes</h1>
-		</div>
-		<div class="s2 flex align-center">
-			<a href="{% url 'customer_create'%}" class="s12 button blue-bg white"
-			><i class="material-icons">person_add</i>
-			Añadir cliente</a>
-		</div>
-	</div>
-	<div class="s12 grid">
-		
-		<form action="{% url 'customer_search' %}" method="GET" class="s12 flex align-center">
-			<input
-				class="full-width"
-				type="text"
-				name="q"
-				placeholder="Buscar clientes..."
-			/>
-	</div>
+<header class="header">
+	<i class="material-icons">person</i>
+	<h2>Clientes</h2>
+</header>
+<div class="searchbar">
+	<a href="{% url 'customer_create'%}" class="button green-bg">
+		<i class="material-icons">person_add</i>Añadir cliente
+	</a>
+	<form action="{% url 'customer_search' %}" method="GET">
+		<input type="text" name="q" placeholder="Buscar clientes..." />
 	</form>
-	<table class="s12">
-		<tr>
-			<th>Cliente</th>
-			<th>RUC</th>
-			<th>Teléfono</th>
-			<th>Email</th>
-			<th>Ciudad</th>
-			<th>Dirección</th>
-			<th>Acciones</th>
-		</tr>
-	
-		{% for customer in customers %}
-		<tr>
-			<td>{{customer.name}}</td>
-			<td>{{customer.ruc}}</td>
-			<td>{{customer.phone}}</td>
-			<td>{{customer.email}}</td>
-			<td>{{customer.city}}</td>
-			<td>{{customer.address}}</td>
-			<td class="flex">
-				<a href="{% url 'customer_update' customer.id %}" class="orange"><i class="material-icons">edit</i></a>
-				<a href="{% url 'customer_delete' customer.id %}" class="red"><i class="material-icons">delete</i></a>
-			</td>
-		</tr>
-		{% endfor %}
-	</table>
 </div>
+
+<table>
+	<tr>
+		<th>Cliente</th>
+		<th>RUC</th>
+		<th>Teléfono</th>
+		<th>Email</th>
+		<th>Ciudad</th>
+		<th>Dirección</th>
+		<th>Acciones</th>
+	</tr>
+
+	{% for customer in customers %}
+	<tr>
+		<td>{{customer.name}}</td>
+		<td>{{customer.ruc}}</td>
+		<td>{{customer.phone}}</td>
+		<td>{{customer.email}}</td>
+		<td>{{customer.city}}</td>
+		<td>{{customer.address}}</td>
+		<td class="flex">
+			<a href="{% url 'customer_update' customer.id %}"
+				><i class="material-icons orange">edit</i></a
+			>
+			<a href="{% url 'customer_delete' customer.id %}"
+				><i class="material-icons red">delete</i></a
+			>
+		</td>
+	</tr>
+	{% endfor %}
+</table>
 
 {% endblock %}

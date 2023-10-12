@@ -1,18 +1,13 @@
-<nav class="navbar blue-darken-3-bg">
-	<a href="#" class="logo white">Climax</a>
-	<a class="menu-toggle"><i class="material-icons white">menu</i></a>
+<nav class="navbar">
+	<h1>Climax</h1>
 	<ul class="menu">
-		<a href="/" class="menu-item white">Inicio</a>
-		<a href="{% url 'quote_search' %}" class="menu-item white"
-			>Cotizaciones</a
-		>
-		<a href="{% url 'customer_search'%}" class="menu-item white"
-			>Clientes</a
-		>
+		<a href="/" class="item">Inicio</a>
+		<a href="{% url 'quote_search' %}" class="item">Cotizaciones</a>
+		<a href="{% url 'customer_search'%}" class="item">Clientes</a>
 	</ul>
 </nav>
 
-<script>
+<!--<script>
 	const menuToggle = document.querySelector(".menu-toggle");
 	const menu = document.querySelector(".menu");
 
@@ -20,3 +15,4 @@
 		menu.classList.toggle("show-menu");
 	});
 </script>
+-->

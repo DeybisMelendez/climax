@@ -1,16 +1,18 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<a
-	class="button green-bg white"
-	href="{% url 'quote_pdf' quote.number %}"
-	target="_blank"
->
-	<span class="material-icons">file_download</span> Generar PDF
-</a>
-<a href="{% url 'quote_update' quote.number %}" class="button orange-bg white">
-	<span class="material-icons">edit</span>Editar esta cotización
-</a>
-<a href="{% url 'quote_delete' quote.number %}" class="button red-bg white">
-	<span class="material-icons">edit</span>Eliminar esta cotización
-</a>
-<div>{% include "quote/base_detail.html" %}</div>
+<div class="detail_options">
+	<a
+		href="{% url 'quote_pdf' quote.number %}"
+		class="button green-bg"
+		target="_blank"
+	>
+		<i class="material-icons">file_download</i> Generar PDF
+	</a>
+	<a href="{% url 'quote_update' quote.number %}" class="button orange-bg">
+		<i class="material-icons">edit</i>Editar esta cotización
+	</a>
+	<a href="{% url 'quote_delete' quote.number %}" class="red-bg button">
+		<i class="material-icons">delete</i>Eliminar esta cotización
+	</a>
+</div>
+<div class="pdf_box">{% include "quote/base_detail.html" %}</div>
 {% endblock %}

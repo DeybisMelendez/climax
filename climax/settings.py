@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "customers",
     # 'pdfkit',
     # 'django_pdfkit',
+    "static_precompiler",
 ]
 
 MIDDLEWARE = [
@@ -132,3 +133,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, "static"),
 )
+
+STATIC_PRECOMPILER_ROOT = os.path.join(BASE_DIR, 'static')
+# STATIC_PRECOMPILER_OUTPUT_DIR = os.path.join(BASE_DIR, 'static/css')

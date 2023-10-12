@@ -1,30 +1,25 @@
 {% extends 'layouts/base.html' %} {% block content %}
 
-<h1>Cotización</h1>
+<header class="header">
+	<i class="material-icons">update</i>
+	<h2>Modificar cotización</h2>
+</header>
 
-<form method="post" class="flex justify-end">
+<form method="post">
 	{% csrf_token %}
-	<div class="grid gap-1">
-		<div class="s6 m4 l2">{{form.date.label_tag}} {{form.date}}</div>
-		<div class="s6 m4 l2">
-			{{form.customer.label_tag}} {{form.customer}}
-		</div>
-		<div class="s6 m4 l2">{{form.contact.label_tag}} {{form.contact}}</div>
-		<div class="s6 m4 l2">
-			{{form.currency.label_tag}} {{form.currency}}
-		</div>
-		<div class="s6 m4 l2">{{form.unit.label_tag}} {{form.unit}}</div>
-		<div class="s6 m4 l2">
-			{{form.expiration.label_tag}} {{form.expiration}}
-		</div>
-		<div class="s12">
-			{{form.description.label_tag}} {{form.description}}
-		</div>
-		<div class="s12">{{form.note.label_tag}} {{form.note}}</div>
+	<div>
+		<div>{{form.date.label_tag}} {{form.date}}</div>
+		<div>{{form.customer.label_tag}} {{form.customer}}</div>
+		<div>{{form.contact.label_tag}} {{form.contact}}</div>
+		<div>{{form.currency.label_tag}} {{form.currency}}</div>
+		<div>{{form.unit.label_tag}} {{form.unit}}</div>
+		<div>{{form.expiration.label_tag}} {{form.expiration}}</div>
+		<div>{{form.description.label_tag}} {{form.description}}</div>
+		<div>{{form.note.label_tag}} {{form.note}}</div>
 	</div>
 	{{ formset.management_form }}
-	<div class="s12 grid" id="items">
-		<table class="s12" id="item-table" style="overflow-x: auto">
+	<div id="items">
+		<table id="item-table" class="quantity-table">
 			<thead>
 				<tr>
 					<th>Cantidad</th>
@@ -40,40 +35,35 @@
 					<td>{{ form.quantity }}</td>
 					<td>{{ form.description }}</td>
 					<td>{{ form.price }}</td>
-					<td class="total-item right-text"></td>
-					<td>
-						{{form.id}} Eliminar:{{form.DELETE}}
-						<!--<a href="#!" class="remove-row button red-bg white">
-							<span class="material-icons">delete</span>Borrar
-						</a>-->
-					</td>
+					<td class="total-item"></td>
+					<td>{{form.id}} Eliminar:{{form.DELETE}}</td>
 				</tr>
 				{% endfor %}
 			</tbody>
 			<tbody>
 				<tr>
-					<th colspan="3" class="right-text">Subtotal cotización</th>
-					<td colspan="1" class="right-text" id="sub-total"></td>
+					<th colspan="3">Subtotal cotización</th>
+					<td colspan="1" id="sub-total"></td>
 					<td colspan="1">
-						<a href="#!" id="add-row" class="button blue-bg white">
-							<span class="material-icons">add</span> Agregar fila
+						<a href="#!" id="add-row" class="button">
+							<i class="material-icons green">add</i>
 						</a>
 					</td>
 				</tr>
 				<tr>
-					<th colspan="3" class="right-text">Descuento</th>
+					<th colspan="3">Descuento</th>
 					<td colspan="1">{{form.discount}}</td>
 				</tr>
 				<tr>
-					<th colspan="3" class="right-text">Total cotización</th>
-					<td colspan="1" class="right-text" id="total"></td>
+					<th colspan="3">Total cotización</th>
+					<td colspan="1" id="total"></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
 
-	<div class="flex justify-space-evenly">
-		<button type="submit" class="button green-bg white" class>
+	<div>
+		<button type="submit" class="button" class>
 			<span class="material-icons">save</span> Guardar Cotización
 		</button>
 	</div>

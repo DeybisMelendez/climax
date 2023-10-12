@@ -6,20 +6,26 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Climax Refrigeración</title>
 
-		<link
+		<!--link
 			href="https://cdn.jsdelivr.net/gh/DeybisMelendez/Jelly/jelly.min.css"
 			rel="stylesheet"
 			type="text/css"
-		/>
+		/-->
+		{% load compile_static %} {% load static %}
+		<!--link
+			rel="stylesheet"
+			type="text/css"
+			href="{% static 'css/main.css' %}"
+		/-->
+		<link rel="stylesheet" href="{% static "less/main.less"|compile %}" />
+
 		<link
 			href="https://fonts.googleapis.com/icon?family=Material+Icons"
 			rel="stylesheet"
 		/>
 	</head>
-	<body style="background-color: #eee">
+	<body>
 		{% include "includes/nav.html" %}
-		<div class="container block">
-			<div class="panel white-bg">{% block content %} {% endblock %}</div>
-		</div>
+		<div class="container">{% block content %} {% endblock %}</div>
 	</body>
 </html>

@@ -1,65 +1,58 @@
 {% extends 'layouts/base.html' %} {% block content %} {% load humanize %}
-<div class="grid">
-	<div class="s12 m10 flex align-center">
-		<i class="material-icons">description</i>
-		<h1>Cotizaciones</h1>
-	</div>
-	<div class="s12 m2">
-		<a href="{% url 'quote_create'%}" class="s12 button blue-bg white"
-			><i class="material-icons">note_add</i> Crear Cotización</a
-		>
-	</div>
-	<form action="{% url 'quote_search' %}" method="GET" class="s12">
+<header class="header">
+	<i class="material-icons">description</i>
+	<h2>Cotizaciones</h2>
+</header>
+<div class="searchbar">
+	<a href="{% url 'quote_create'%}" class="button green-bg"
+		><i class="material-icons">note_add</i> Crear Cotización</a
+	>
+	<form action="{% url 'quote_search' %}" method="GET" class="">
 		<input
-			class="full-width"
 			type="text"
 			name="q"
 			placeholder="Buscar cotizaciones..."
 			value="{{ request.GET.q|default:'' }}"
 		/>
 	</form>
-	<div style="overflow-x: auto" class="s12 grid">
-		<table class="s12">
-			<tr>
-				<th>No</th>
-				<th>Fecha</th>
-				<th>Cliente</th>
-				<th>Descripción</th>
-				<th>Total</th>
-				<th>Acciones</th>
-			</tr>
-			{% for quote in quotes %}
-			<tr>
-				<td>{{quote.number}}</td>
-				<td>{{quote.date|date:'d/m/Y'}}</td>
-				<td>
-					<a
-						href="{% url 'quote_detail' quote.number %}"
-						class="link blue"
-						>{{quote.customer.name}}</a
-					>
-				</td>
-				<td>{{quote.description|truncatechars:64}}</td>
-				<td class="right-text">
-					{{quote.unit}} {{ quote.total|floatformat:2|intcomma }}
-				</td>
-				<td class="flex">
-					<a
-						href="{% url 'quote_update' quote.number %}"
-						class="orange"
-						><i class="material-icons">edit</i></a
-					>
-					<a href="{% url 'quote_delete' quote.number %}" class="red"
-						><i class="material-icons">delete</i></a
-					>
-				</td>
-			</tr>
-			{% empty %}
-			<tr>
-				<td colspan="5">No hay cotizaciones.</td>
-			</tr>
-			{% endfor %}
-		</table>
-	</div>
+</div>
+<div>
+	<table>
+		<tr>
+			<th>No</th>
+			<th>Fecha</th>
+			<th>Cliente</th>
+			<th>Descripción</th>
+			<th>Total</th>
+			<th>Acciones</th>
+		</tr>
+		{% for quote in quotes %}
+		<tr>
+			<td>{{quote.number}}</td>
+			<td>{{quote.date|date:'d/m/Y'}}</td>
+			<td>
+				<a href="{% url 'quote_detail' quote.number %}"
+					>{{quote.customer.name}}</a
+				>
+			</td>
+			<td>{{quote.description|truncatechars:64}}</td>
+			<td class="right-text">
+				{{quote.unit}} {{ quote.total|floatformat:2|intcomma }}
+			</td>
+			<td class="flex">
+				<a href="{% url 'quote_update' quote.number %}"
+					><i class="material-icons orange">edit</i></a
+				>
+				<a href="{% url 'quote_delete' quote.number %}"
+					><i class="material-icons red">delete</i></a
+				>
+			</td>
+		</tr>
+		{% empty %}
+		<tr>
+			<td colspan="5">No hay cotizaciones.</td>
+		</tr>
+		{% endfor %}
+	</table>
 </div>
 {% endblock %}

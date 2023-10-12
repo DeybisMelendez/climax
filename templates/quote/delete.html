@@ -1,14 +1,15 @@
 {% extends 'layouts/base.html' %} {% block content %}
-<h1 class="red flex align-center">
-	<span class="material-icons">warning</span>Eliminar Cotización
-</h1>
+<header class="header">
+	<i class="material-icons red">warning</i>
+	<h2>Eliminar Cotización</h2>
+</header>
 <p>¿Estás seguro que deseas eliminar la cotización <b>"{{ quote }}"</b>?</p>
 <form method="post">
 	{% csrf_token %}
-	<button type="submit" class="button red-bg white">
+	<button type="submit" class="button red-bg">
 		<span class="material-icons">delete</span> Eliminar
 	</button>
-	<a href="{% url 'quote_search' %}" class="button orange-bg white"
+	<a href="{% url 'quote_search' %}" class="button orange-bg"
 		><span class="material-icons">cancel</span> Cancelar</a
 	>
 </form>
