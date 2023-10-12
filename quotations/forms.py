@@ -5,14 +5,13 @@ from .models import Quote, Item
 class QuoteForm(forms.ModelForm):
     class Meta:
         model = Quote
-        fields = ["date", 'customer', "contact", "currency", "unit",
+        fields = ["date", 'customer', "contact", "currency_ref",
                   'description', "note", "expiration", "discount"]
         labels = {
             "date": "Fecha",
             "customer": "Cliente",
             "contact": "Contacto",
-            "currency": "Moneda",
-            "unit": "Unidad de moneda",
+            "currency_ref": "Moneda",
             "description": "Descripción",
             "note": "Nota",
             "expiration": "Caduca (días)",
@@ -35,11 +34,8 @@ class QuoteForm(forms.ModelForm):
                 "placeholder": "Ej: Se realizó prueba de frío.",
                 "rows": "10"
             }),
-            "currency": forms.TextInput(attrs={
-                "placeholder": "Ej: Córdobas",
-            }),
-            "unit": forms.TextInput(attrs={
-                "placeholder": "Ej: C$",
+            "currency_ref": forms.Select(attrs={
+                "placeholder": "Seleccione la moneda",
             }),
             "expiration": forms.TextInput(attrs={
                 "placeholder": "Ej: 15",

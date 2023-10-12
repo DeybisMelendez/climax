@@ -1,0 +1,21 @@
+{% extends 'layouts/base.html' %} {% block content %}
+<header class="header">
+	<i class="material-icons">settings</i>
+	<h2>Ajustes</h2>
+</header>
+<section>
+	<h3>Lista de Copias de Seguridad</h3>
+
+	<ul>
+		{% for backup_file in backup_files %}
+		<li>
+			{{ backup_file }}
+			<a href="{% url 'restore_backup' backup_file %}">Restaurar</a>
+			<a href="{% url 'delete_backup' backup_file %}">Eliminar</a>
+		</li>
+		{% endfor %}
+	</ul>
+
+	<a href="{% url 'backup' %}">Crear nueva copia de seguridad</a>
+</section>
+{% endblock %}

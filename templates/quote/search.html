@@ -36,10 +36,11 @@
 				>
 			</td>
 			<td>{{quote.description|truncatechars:64}}</td>
-			<td class="right-text">
-				{{quote.unit}} {{ quote.total|floatformat:2|intcomma }}
+			<td>
+				{{quote.currency_ref.symbol}}
+				{{quote.total|floatformat:2|intcomma }}
 			</td>
-			<td class="flex">
+			<td>
 				<a href="{% url 'quote_update' quote.number %}"
 					><i class="material-icons orange">edit</i></a
 				>
@@ -54,5 +55,30 @@
 		</tr>
 		{% endfor %}
 	</table>
+	{% if quotes.has_previous %}
+	<a
+		href="{% if search_query %}?q={{ search_query }}&p=1{% else %}?p=1{% endif %}"
+		>Primera</a
+	>
+	<a
+		href="{% if search_query %}?q={{ search_query }}&p={{ quotes.previous_page_number }}{% else %}?p={{ quotes.previous_page_number }}{% endif %}"
+		>Anterior</a
+	>
+	{% endif %}
+
+	<span class="current-page"
+		>{{ quotes.number }} de {{ quotes.paginator.num_pages }}</span
+	>
+
+	{% if quotes.has_next %}
+	<a
+		href="{% if search_query %}?q={{ search_query }}&p={{ quotes.next_page_number }}{% else %}?p={{ quotes.next_page_number }}{% endif %}"
+		>Siguiente</a
+	>
+	<a
+		href="{% if search_query %}?q={{ search_query }}&p={{ quotes.paginator.num_pages }}{% else %}?p={{ quotes.paginator.num_pages }}{% endif %}"
+		>Última</a
+	>
+	{% endif %}
 </div>
 {% endblock %}

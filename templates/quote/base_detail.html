@@ -41,14 +41,14 @@
 		</tr>
 		<tr>
 			<th>Ciudad</th>
-			<th>Fecha de caducidad</th>
+			<th>Caduda en</th>
 			<th>Moneda</th>
 			<th>T/C</th>
 		</tr>
 		<tr>
 			<td>{{ quote.customer.city }}</td>
 			<td>{{ quote.expiration }} días</td>
-			<td>{{ quote.currency}}</td>
+			<td>{{ quote.currency_ref.name}}</td>
 			<td>OFICIAL</td>
 		</tr>
 	</table>
@@ -77,9 +77,11 @@
 			<tr>
 				<td>{{ item.quantity|intcomma }}</td>
 				<td colspan="5">{{ item.description }}</td>
-				<td class="right">{{quote.unit}} {{ item.price|intcomma }}</td>
 				<td class="right">
-					{{quote.unit}} {{ item.total|floatformat:2|intcomma }}
+					{{quote.currency_ref.symbol}} {{ item.price|intcomma }}
+				</td>
+				<td class="right">
+					{{quote.currency_ref.symbol}}{{item.total|floatformat:2|intcomma}}
 				</td>
 			</tr>
 			{% endfor %} {% if quote.discount != 0%}
@@ -87,7 +89,7 @@
 				<td colspan="7" class="center"><b>Sub Total</b></td>
 				<td class="right">
 					<b>
-						{{quote.unit}}
+						{{quote.currency_ref.symbol}}
 						{{quote.sub_total|floatformat:2|intcomma}}
 					</b>
 				</td>
@@ -96,7 +98,8 @@
 				<td colspan="7" class="center"><b>Descuento</b></td>
 				<td class="right">
 					<b>
-						{{quote.unit}} {{quote.discount|floatformat:2|intcomma}}
+						{{quote.currency_ref.symbol}}
+						{{quote.discount|floatformat:2|intcomma}}
 					</b>
 				</td>
 			</tr>
@@ -105,7 +108,8 @@
 				<td colspan="7" class="center"><b>Total</b></td>
 				<td class="right">
 					<b>
-						{{quote.unit}} {{ quote.total|floatformat:2|intcomma}}
+						{{quote.currency_ref.symbol}}
+						{{quote.total|floatformat:2|intcomma}}
 					</b>
 				</td>
 			</tr>

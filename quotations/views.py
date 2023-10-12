@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from .forms import QuoteForm, ItemFormset
 from .models import Quote
 from django.db.models import Q
@@ -71,6 +72,7 @@ def quote_update(request, pk):
 
 def quote_search(request):
     search_query = request.GET.get('q')
+    page_number = request.GET.get('p')
 
     if search_query:
 
@@ -81,9 +83,23 @@ def quote_search(request):
             Q(item__description__icontains=search_query)
         ).distinct()
     else:
-        quotes = Quote.objects.all()
+        quotes = Quote.objects.all().order_by('-number')
+    items_per_page = 10  # Número de cotizaciones por página, cambiar por la opción en settings
 
-    context = {'quotes': quotes, 'search_query': search_query}
+    paginator = Paginator(quotes, items_per_page)
+
+    try:
+        page = paginator.page(page_number)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+
+    context = {
+        'quotes': page,
+        'search_query': search_query,
+    }
+    # context = {'quotes': quotes, 'search_query': search_query}
     return render(request, 'quote/search.html', context)
 
 

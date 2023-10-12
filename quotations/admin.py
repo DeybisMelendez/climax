@@ -9,8 +9,10 @@ class ItemInline(admin.TabularInline):
 
 class QuoteAdmin(admin.ModelAdmin):
     inlines = [ItemInline]
-    search_fields = ['number', 'customer__name', 'description', "note"]
-    list_display = ('number', 'customer', 'description', 'note')
+    search_fields = ['number', 'customer__name',
+                     'description',  "total"]
+    list_display = ('number', 'customer', 'description',
+                    'note', "currency_ref", "total")
     list_filter = ('customer',)
     ordering = ('-number',)
 

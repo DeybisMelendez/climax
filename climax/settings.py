@@ -41,9 +41,11 @@ INSTALLED_APPS = [
     # "markdown",
     "quotations",
     "customers",
+    "settings",
     # 'pdfkit',
     # 'django_pdfkit',
     "static_precompiler",
+    'dbbackup',
 ]
 
 MIDDLEWARE = [
@@ -136,3 +138,6 @@ STATICFILES_DIRS = (
 
 STATIC_PRECOMPILER_ROOT = os.path.join(BASE_DIR, 'static')
 # STATIC_PRECOMPILER_OUTPUT_DIR = os.path.join(BASE_DIR, 'static/css')
+
+DBBACKUP_STORAGE = 'django.core.files.storage.FileSystemStorage'
+DBBACKUP_STORAGE_OPTIONS = {'location': 'backup/'}

@@ -1,5 +1,6 @@
 from django.db import models
 from customers.models import Customer
+from settings.models import Currency
 from datetime import date
 from markdown import markdown
 
@@ -11,8 +12,10 @@ class Quote(models.Model):
     contact = models.CharField(max_length=255, blank=True, default="El mismo")
     note = models.TextField(blank=True)
     date = models.DateField(default=date.today)
-    currency = models.TextField(max_length=16, blank=True, default="Dólares")
-    unit = models.CharField(max_length=4, blank=True, default="$")
+    # currency = models.TextField(max_length=16, blank=True, default="Dólares")
+    # unit = models.CharField(max_length=4, blank=True, default="$")
+    currency_ref = models.ForeignKey(
+        Currency, on_delete=models.SET_NULL, null=True, blank=True)
     expiration = models.IntegerField(default=15, blank=True)
     discount = models.DecimalField(
         decimal_places=2, max_digits=10, blank=False, null=False, default=0)
