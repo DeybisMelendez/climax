@@ -1,0 +1,24 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+<div>
+	<a href="{% url 'create_product'%}" class="button green-bg"
+		><i class="material-icons">note_add</i> Crear Producto</a
+	>
+	<a href="{% url 'add_entry'%}" class="button green-bg"
+		><i class="material-icons">note_add</i> Crear Entrada</a
+	>
+</div>
+
+<h1>List of Products</h1>
+
+<ul>
+    <a href="{% url 'quote_create'%}"></a>
+</ul>
+<ul>
+	{% for product in products %}
+	<li>
+		<a href="{% url 'product_detail' product.id %}">{{ product.name }}</a>
+	</li>
+	{% endfor %}
+</ul>
+{% endblock %}

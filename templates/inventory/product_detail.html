@@ -1,0 +1,11 @@
+{% extends 'layouts/base.html' %} {% block content %}
+
+<h1>{{ product.name }} Details</h1>
+<p>Name: {{ product.name }}</p>
+<p>Code: {{ product.code }}</p>
+<p>Description: {{ product.description }}</p>
+<p>Purchase Price: ${{ product.purchase_price }}</p>
+<p>Selling Price: ${{ product.selling_price }}</p>
+<a href="{% url 'entry_list' product.id %}">View Entries</a>
+<a href="{% url 'exit_list' product.id %}">View Exits</a>
+{% endblock %}

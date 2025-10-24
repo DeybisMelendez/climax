@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "quotations",
     "customers",
     "settings",
+    "inventory",
     # 'pdfkit',
     # 'django_pdfkit',
     "static_precompiler",
